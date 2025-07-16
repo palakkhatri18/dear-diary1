@@ -9,6 +9,7 @@ const DiaryEntry = () => {
   const { date } = useParams();
   const { user } = useUser();
   const userId = user?.id;
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
   const [entryText, setEntryText] = useState("");
   const [mood, setMood] = useState("");
@@ -20,7 +21,7 @@ const DiaryEntry = () => {
       if (!userId || !date) return;
 
       try {
-        const res = await axios.get(`http://localhost:5000/api/diary/${userId}/${date}`);
+        const res = await axios.get(`${BACKEND_URL}/api/diary/${userId}/${date}`);
         setEntryText(res.data.entryText);
         setMood(res.data.mood);
         setTags(res.data.tags.join(", "));
@@ -39,7 +40,7 @@ const DiaryEntry = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/diary", {
+      await axios.post(`${BACKEND_URL}/api/diary`, {
         userId,
         date,
         entryText,
