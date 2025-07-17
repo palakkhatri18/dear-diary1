@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/calendarcomponent.tsx","./src/components/navbar.tsx","./src/components/ui/button.tsx","./src/components/ui/calendar.tsx","./src/lib/utils.ts","./src/pages/diaryentry.tsx","./src/pages/home.tsx"],"version":"5.8.3"}
