@@ -41,12 +41,13 @@ const DiaryEntry = () => {
     e.preventDefault();
     try {
       await axios.post(`${BACKEND_URL}/api/diary`, {
-        userId,
-        date,
-        entryText,
-        mood,
-        tags: tags.split(",").map((tag) => tag.trim()),
-      });
+  userId,
+  date,
+  entryText,
+  mood,
+  tags: tags.split(",").map((tag) => tag.trim()),
+});
+
       alert("Entry saved!");
     } catch (err) {
       alert("Failed to save entry.");
