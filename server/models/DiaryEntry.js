@@ -23,7 +23,7 @@ const diaryEntrySchema = new mongoose.Schema({
   },
 }, { timestamps: true });
 
-// ✅ Make sure combination of userId + date is unique
+// ✅ Make userId + date unique so each user has their own entry per date
 diaryEntrySchema.index({ userId: 1, date: 1 }, { unique: true });
 
 const DiaryEntry = mongoose.model('DiaryEntry', diaryEntrySchema);

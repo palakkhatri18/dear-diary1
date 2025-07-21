@@ -3,44 +3,43 @@ import DiaryEntry from '../models/DiaryEntry.js';
 
 const router = express.Router();
 
-// Create or update entry
+// ✅ Create or update a diary entry for a user on a specific date
 router.post('/', async (req, res) => {
   try {
     const { userId, date, entryText, mood, tags } = req.body;
 
-    const existing = await DiaryEntry.findOne({ userId, date });
+    // Format the date to YYYY-MM-DD in case it's full ISO
+    const formattedDate = new Date(date).toISOString().split('T')[0];
 
-    if (existing) {
-      existing.entryText = entryText;
-      existing.mood = mood;
-      existing.tags = tags;
-      await existing.save();
-      return res.status(200).json(existing);
-    }
+    const updatedEntry = await DiaryEntry.findOneAndUpdate(
+      { userId, date: formattedDate },
+      { entryText, mood, tags },
+      { upsert: true, new: true, setDefaultsOnInsert: true }
+    );
 
-    const newEntry = new DiaryEntry({ userId, date, entryText, mood, tags });
-    await newEntry.save();
-    res.status(201).json(newEntry);
+    res.status(200).json(updatedEntry);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to save diary entry' });
+    console.error('Save error:', err.message);
+    res.status(500).json({ error: 'Failed to save diary entry', details: err.message });
   }
 });
 
-// Get entry by date
+// ✅ Get entry for specific user + date
 router.get('/:userId/:date', async (req, res) => {
   try {
     const { userId, date } = req.params;
     const formattedDate = new Date(date).toISOString().split('T')[0];
+
     const entry = await DiaryEntry.findOne({ userId, date: formattedDate });
     if (!entry) return res.status(404).json({ message: 'No entry found' });
+
     res.json(entry);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch entry' });
   }
 });
 
-
-// Get all entries for a user (optional)
+// ✅ Get all entries for a specific user (optional)
 router.get('/:userId', async (req, res) => {
   try {
     const entries = await DiaryEntry.find({ userId: req.params.userId });
