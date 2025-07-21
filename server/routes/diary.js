@@ -3,12 +3,16 @@ import DiaryEntry from '../models/DiaryEntry.js';
 
 const router = express.Router();
 
-// ✅ Create or update a diary entry for a user on a specific date
+// ✅ Create or update diary entry
 router.post('/', async (req, res) => {
   try {
     const { userId, date, entryText, mood, tags } = req.body;
 
-    // Format the date to YYYY-MM-DD in case it's full ISO
+    if (!userId || !date || !entryText) {
+      return res.status(400).json({ error: 'Missing userId, date, or entryText' });
+    }
+
+    // Ensure date is formatted to YYYY-MM-DD
     const formattedDate = new Date(date).toISOString().split('T')[0];
 
     const updatedEntry = await DiaryEntry.findOneAndUpdate(
@@ -17,14 +21,14 @@ router.post('/', async (req, res) => {
       { upsert: true, new: true, setDefaultsOnInsert: true }
     );
 
-    res.status(200).json(updatedEntry);
+    res.status(200).json({ message: 'Entry saved', entry: updatedEntry });
   } catch (err) {
-    console.error('Save error:', err.message);
+    console.error('❌ Save error:', err.message);
     res.status(500).json({ error: 'Failed to save diary entry', details: err.message });
   }
 });
 
-// ✅ Get entry for specific user + date
+// ✅ Get entry for a specific date & user
 router.get('/:userId/:date', async (req, res) => {
   try {
     const { userId, date } = req.params;
@@ -35,16 +39,18 @@ router.get('/:userId/:date', async (req, res) => {
 
     res.json(entry);
   } catch (err) {
+    console.error('❌ Fetch error:', err.message);
     res.status(500).json({ error: 'Failed to fetch entry' });
   }
 });
 
-// ✅ Get all entries for a specific user (optional)
+// ✅ Get all entries for a user
 router.get('/:userId', async (req, res) => {
   try {
     const entries = await DiaryEntry.find({ userId: req.params.userId });
     res.json(entries);
   } catch (err) {
+    console.error('❌ Fetch all error:', err.message);
     res.status(500).json({ error: 'Failed to fetch entries' });
   }
 });
