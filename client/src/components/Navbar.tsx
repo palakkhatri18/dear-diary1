@@ -9,7 +9,8 @@ const Navbar = () => {
           <UserButton />
         </SignedIn>
         <SignedOut>
-          <SignInButton />
+          {/* This ensures the navbar sign-in also uses the modal */}
+          <SignInButton mode="modal" />
         </SignedOut>
       </div>
     </nav>
