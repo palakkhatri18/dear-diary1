@@ -15,28 +15,13 @@ router.post('/', async (req, res) => {
     // Ensure date is formatted to YYYY-MM-DD
     const formattedDate = new Date(date).toISOString().split('T')[0];
 
-    const existingEntry = await DiaryEntry.findOne({ userId, date: formattedDate });
+    const updatedEntry = await DiaryEntry.findOneAndUpdate(
+      { userId, date: formattedDate },
+      { entryText, mood, tags },
+      { upsert: true, new: true, setDefaultsOnInsert: true }
+    );
 
-    if (existingEntry) {
-      // Update existing entry
-      const updatedEntry = await DiaryEntry.findOneAndUpdate(
-        { userId, date: formattedDate },
-        { entryText, mood, tags },
-        { new: true }
-      );
-      res.status(200).json({ message: 'Entry updated', entry: updatedEntry });
-    } else {
-      // Create new entry
-      const newEntry = new DiaryEntry({
-        userId,
-        date: formattedDate,
-        entryText,
-        mood,
-        tags,
-      });
-      await newEntry.save();
-      res.status(201).json({ message: 'Entry created', entry: newEntry });
-    }
+    res.status(200).json({ message: 'Entry saved', entry: updatedEntry });
   } catch (err) {
     console.error('❌ Save error:', err.message);
     res.status(500).json({ error: 'Failed to save diary entry', details: err.message });
@@ -59,10 +44,11 @@ router.get('/:userId/:date', async (req, res) => {
   }
 });
 
-// ✅ Get all entries for a user
+// ✅ Get all entries for a user (optimized)
 router.get('/:userId', async (req, res) => {
   try {
-    const entries = await DiaryEntry.find({ userId: req.params.userId });
+    // Only select the fields you need for the list view to reduce payload size
+    const entries = await DiaryEntry.find({ userId: req.params.userId }).select('date mood tags');
     res.json(entries);
   } catch (err) {
     console.error('❌ Fetch all error:', err.message);

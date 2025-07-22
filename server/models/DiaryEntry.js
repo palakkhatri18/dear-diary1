@@ -4,6 +4,7 @@ const diaryEntrySchema = new mongoose.Schema({
   userId: {
     type: String,
     required: true,
+    index: true, // Add an index to the userId field for faster queries
   },
   date: {
     type: String, // format: "YYYY-MM-DD"
