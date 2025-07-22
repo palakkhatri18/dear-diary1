@@ -15,13 +15,28 @@ router.post('/', async (req, res) => {
     // Ensure date is formatted to YYYY-MM-DD
     const formattedDate = new Date(date).toISOString().split('T')[0];
 
-    const updatedEntry = await DiaryEntry.findOneAndUpdate(
-      { userId, date: formattedDate },
-      { entryText, mood, tags },
-      { upsert: true, new: true, setDefaultsOnInsert: true }
-    );
+    const existingEntry = await DiaryEntry.findOne({ userId, date: formattedDate });
 
-    res.status(200).json({ message: 'Entry saved', entry: updatedEntry });
+    if (existingEntry) {
+      // Update existing entry
+      const updatedEntry = await DiaryEntry.findOneAndUpdate(
+        { userId, date: formattedDate },
+        { entryText, mood, tags },
+        { new: true }
+      );
+      res.status(200).json({ message: 'Entry updated', entry: updatedEntry });
+    } else {
+      // Create new entry
+      const newEntry = new DiaryEntry({
+        userId,
+        date: formattedDate,
+        entryText,
+        mood,
+        tags,
+      });
+      await newEntry.save();
+      res.status(201).json({ message: 'Entry created', entry: newEntry });
+    }
   } catch (err) {
     console.error('❌ Save error:', err.message);
     res.status(500).json({ error: 'Failed to save diary entry', details: err.message });
