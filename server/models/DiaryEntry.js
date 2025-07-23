@@ -4,7 +4,7 @@ const diaryEntrySchema = new mongoose.Schema({
   userId: {
     type: String,
     required: true,
-    index: true, // Add an index to the userId field for faster queries
+    // We remove the single index here because the compound index below is more efficient
   },
   date: {
     type: String, // format: "YYYY-MM-DD"
@@ -23,6 +23,10 @@ const diaryEntrySchema = new mongoose.Schema({
     default: [],
   },
 }, { timestamps: true });
+
+// ✅ Add a compound index for the most common query
+// This will make finding a diary entry by userId and date much faster.
+diaryEntrySchema.index({ userId: 1, date: 1 });
 
 const DiaryEntry = mongoose.model('DiaryEntry', diaryEntrySchema);
 export default DiaryEntry;
