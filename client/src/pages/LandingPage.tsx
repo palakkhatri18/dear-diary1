@@ -1,11 +1,11 @@
 import React from 'react';
 import { SignInButton } from '@clerk/clerk-react';
-import diaryNotebook from '@/assets/diary-notebook.png'; // Import the new image
+import diaryNotebook from '@/assets/diary-notebook.png';
 
 const LandingPage = () => {
   return (
-    // Main container to center everything
-    <div className="relative flex flex-col items-center justify-center min-h-screen bg-background text-center p-4 overflow-hidden">
+    // We can simplify this container now
+    <div className="flex flex-col items-center justify-center h-full text-center p-4">
       
       {/* Container for the notebook and the text on top */}
       <div className="relative w-full max-w-2xl">
@@ -30,10 +30,9 @@ const LandingPage = () => {
         </div>
       </div>
 
-      {/* The new cute footer */}
-      <footer className="absolute bottom-4 text-center text-sm text-foreground/50">
-        made with ❤️ by palak
-      </footer>
+      {/*
+        The footer has been removed from here because it now lives in App.tsx
+      */}
 
     </div>
   );

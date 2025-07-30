@@ -1,66 +1,72 @@
 import React, { Suspense, lazy } from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
 import {
   SignedIn,
   SignedOut,
   SignIn,
   SignUp,
   RedirectToSignIn,
-} from "@clerk/clerk-react";
+} from '@clerk/clerk-react';
 
-import Navbar from "@/components/Navbar";
+import Navbar from '@/components/Navbar';
 
-// Lazy load the components for code splitting and faster initial load
-const Home = lazy(() => import("@/pages/Home"));
-const DiaryEntry = lazy(() => import("@/pages/DiaryEntry"));
-const LandingPage = lazy(() => import("@/pages/LandingPage")); // Import the new page
+const Home = lazy(() => import('@/pages/Home'));
+const DiaryEntry = lazy(() => import('@/pages/DiaryEntry'));
+const LandingPage = lazy(() => import('@/pages/LandingPage'));
 
 function App() {
   return (
-    <>
+    // 1. Add this main wrapper div with the layout classes
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      {/* Add a Suspense fallback for the loading state */}
-      <Suspense fallback={<div className="p-6 text-center">Loading...</div>}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <SignedIn>
-                  <Home />
-                </SignedIn>
-                <SignedOut>
-                  {/* Show the LandingPage to signed-out users */}
-                  <LandingPage />
-                </SignedOut>
-              </>
-            }
-          />
-          <Route
-            path="/entry/:date"
-            element={
-              <>
-                <SignedIn>
-                  <DiaryEntry />
-                </SignedIn>
-                <SignedOut>
-                  {/* Protect this route by redirecting to sign-in */}
-                  <RedirectToSignIn />
-                </SignedOut>
-              </>
-            }
-          />
-          <Route
-            path="/sign-in/*"
-            element={<SignIn routing="path" path="/sign-in" />}
-          />
-          <Route
-            path="/sign-up/*"
-            element={<SignUp routing="path" path="/sign-up" />}
-          />
-        </Routes>
-      </Suspense>
-    </>
+      
+      {/* 2. Wrap your content in a <main> tag with flex-grow */}
+      <main className="flex-grow">
+        <Suspense fallback={<div className="p-6 text-center">Loading...</div>}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <SignedIn>
+                    <Home />
+                  </SignedIn>
+                  <SignedOut>
+                    <LandingPage />
+                  </SignedOut>
+                </>
+              }
+            />
+            <Route
+              path="/entry/:date"
+              element={
+                <>
+                  <SignedIn>
+                    <DiaryEntry />
+                  </SignedIn>
+                  <SignedOut>
+                    <RedirectToSignIn />
+                  </SignedOut>
+                </>
+              }
+            />
+            <Route
+              path="/sign-in/*"
+              element={<SignIn routing="path" path="/sign-in" />}
+            />
+            <Route
+              path="/sign-up/*"
+              element={<SignUp routing="path" path="/sign-up" />}
+            />
+          </Routes>
+        </Suspense>
+      </main>
+
+      {/* 3. Add the footer here, at the bottom of the app layout */}
+      <footer className="text-center p-4 text-sm text-foreground/50">
+        made with ❤️ by palak
+      </footer>
+    </div>
   );
 }
 
