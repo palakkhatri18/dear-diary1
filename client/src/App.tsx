@@ -10,18 +10,20 @@ import {
 
 import Navbar from '@/components/Navbar';
 
+// 1. Import the icons you need at the top of the file
+import { FaLinkedin } from 'react-icons/fa';
+import { SiGmail } from 'react-icons/si';
+
 const Home = lazy(() => import('@/pages/Home'));
 const DiaryEntry = lazy(() => import('@/pages/DiaryEntry'));
 const LandingPage = lazy(() => import('@/pages/LandingPage'));
 
 function App() {
   return (
-    // 1. Add this main wrapper div with the layout classes
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-white">
       <Navbar />
       
-      {/* 2. Wrap your content in a <main> tag with flex-grow */}
-      <main className="flex-grow">
+      <main className="flex-grow overflow-y-auto">
         <Suspense fallback={<div className="p-6 text-center">Loading...</div>}>
           <Routes>
             <Route
@@ -37,6 +39,7 @@ function App() {
                 </>
               }
             />
+            {/* ... other routes ... */}
             <Route
               path="/entry/:date"
               element={
@@ -62,9 +65,34 @@ function App() {
         </Suspense>
       </main>
 
-      {/* 3. Add the footer here, at the bottom of the app layout */}
-      <footer className="text-center p-6 text-base text-foreground/50">
-        made with ❤️ by palakk
+      {/* 2. This is the new, updated footer */}
+      <footer className="flex flex-col sm:flex-row items-center justify-between p-6 border-t border-zinc-200 text-zinc-600">
+        
+        {/* Left Side: Your Name */}
+        <div>
+          made with ❤️ by palak
+        </div>
+        
+        {/* Right Side: Social Icons */}
+        <div className="flex items-center gap-x-6 mt-4 sm:mt-0">
+          <a
+            href="https://www.linkedin.com/in/palak-khatri-7236b8247/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn Profile"
+            className="hover:text-pink-500 transition-colors"
+          >
+            <FaLinkedin size={24} />
+          </a>
+          <a
+            href="mailto:palakkhatri2004@gmail.com"
+            aria-label="Send an Email"
+            className="hover:text-pink-500 transition-colors"
+          >
+            <SiGmail size={24} />
+          </a>
+        </div>
+        
       </footer>
     </div>
   );
