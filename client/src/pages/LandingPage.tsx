@@ -1,19 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react'; // Removed useEffect from the import
 import { SignInButton } from '@clerk/clerk-react';
 import journalImage from '@/assets/digital-journal.png';
 
 const LandingPage = () => {
   
-  // This hook correctly prevents scrolling on this page only
-  useEffect(() => {
-    document.body.classList.add('overflow-hidden');
-    return () => {
-      document.body.classList.remove('overflow-hidden');
-    };
-  }, []);
+  // The entire useEffect hook that was here has been DELETED.
 
   return (
-    // The "h-full" class has been removed from this div
     <div className="flex flex-col items-center justify-center text-center p-4 bg-white">
       
       <img
