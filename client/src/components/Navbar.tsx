@@ -2,7 +2,7 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-reac
 import { Link } from "react-router-dom";
 
 // 1. Import your new logo image
-import dearDiaryLogo from "@/assets/dear-diary-logo.png";
+import dearDiaryLogo from "@/assets/dear-diary-logo.jpeg"; // Changed .png to .jpeg
 
 const Navbar = () => {
   return (
