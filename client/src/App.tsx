@@ -63,8 +63,8 @@ function App() {
       </main>
 
       {/* 3. Add the footer here, at the bottom of the app layout */}
-      <footer className="text-center p-4 text-sm text-foreground/50">
-        made with ❤️ by palak
+      <footer className="text-center p-6 text-base text-foreground/50">
+        made with ❤️ by palakk
       </footer>
     </div>
   );
