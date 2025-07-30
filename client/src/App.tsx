@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import { Suspense, lazy } from 'react'; // <-- 'React' has been removed
 import { Routes, Route } from 'react-router-dom';
 import {
   SignedIn,
@@ -11,7 +11,7 @@ import {
 import Navbar from '@/components/Navbar';
 
 // 1. Import the icons you need at the top of the file
-import { FaLinkedin } from 'react-icons/fa';
+import { FaLinkedin } from 'react-icons/fa6';
 import { SiGmail } from 'react-icons/si';
 
 const Home = lazy(() => import('@/pages/Home'));

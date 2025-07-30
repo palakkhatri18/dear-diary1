@@ -1,4 +1,4 @@
-import React from 'react'; // Removed useEffect from the import
+
 import { SignInButton } from '@clerk/clerk-react';
 import journalImage from '@/assets/digital-journal.png';
 
