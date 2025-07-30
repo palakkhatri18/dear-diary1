@@ -17,7 +17,7 @@ const LandingPage = () => {
 
       <SignInButton mode="modal">
         <button
-          className="bg-white text-pink-500 font-bold px-8 py-3 rounded-full shadow-lg mt-6 border border-pink-200 hover:bg-pink-100 transition-all duration-300 transform hover:scale-105"
+          className="bg-white text-pink-500 font-bold px-8 py-3 rounded-full shadow-lg mt-8 border border-pink-200 hover:bg-pink-100 transition-all duration-300 transform hover:scale-105"
         >
           Let's Get Started
         </button>
