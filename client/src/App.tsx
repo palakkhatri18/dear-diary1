@@ -19,7 +19,7 @@ function App() {
     <div className="flex flex-col min-h-screen bg-white">
       <Navbar />
       
-      <main className="flex-grow overflow-y-auto">
+      <main className="flex-grow overflow-y-hidden">
         <Suspense fallback={<div className="p-6 text-center">Loading...</div>}>
           <Routes>
             <Route
@@ -60,7 +60,6 @@ function App() {
         </Suspense>
       </main>
 
-      {/* This is the simple, original footer */}
       <footer className="text-center p-6 text-base text-zinc-600 border-t border-zinc-200">
         made with ❤️ by palak
       </footer>

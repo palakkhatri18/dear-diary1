@@ -1,18 +1,14 @@
-
 import { SignInButton } from '@clerk/clerk-react';
 import journalImage from '@/assets/digital-journal.png';
 
 const LandingPage = () => {
-  
-  // The entire useEffect hook that was here has been DELETED.
-
   return (
-    <div className="flex flex-col items-center justify-center text-center p-4 bg-white">
+    <div className="flex flex-col items-center justify-center h-full text-center p-4 bg-white">
       
       <img
         src={journalImage}
         alt="A pink digital journal with the title 'Your Digital Journal'"
-        className="w-full max-w-xl h-auto"
+        className="w-full max-w-lg h-auto"
       />
 
       <SignInButton mode="modal">
