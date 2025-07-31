@@ -17,15 +17,18 @@ const LandingPage = lazy(() => import('@/pages/LandingPage'));
 
 function App() {
   return (
+    // 1. We've changed the layout to CSS Grid
     <div 
-      className="flex flex-col min-h-screen bg-repeat"
+      className="grid grid-rows-[auto_1fr_auto] min-h-screen bg-repeat"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <Navbar />
       
-      <main className="flex-grow overflow-y-hidden">
+      {/* 2. The main content area now clips any overflow */}
+      <main className="overflow-y-hidden">
         <Suspense fallback={<div className="p-6 text-center">Loading...</div>}>
           <Routes>
+            {/* ... your routes ... */}
             <Route
               path="/"
               element={
@@ -64,7 +67,7 @@ function App() {
         </Suspense>
       </main>
 
-      <footer className="text-center p-6 text-base text-zinc-600 border-t border-zinc-200 bg-white/50 backdrop-blur-sm">
+      <footer className="text-center p-4 text-base text-zinc-700 border-t border-white/50 bg-white/75 backdrop-blur-sm">
         made with ❤️ by palak
       </footer>
     </div>
