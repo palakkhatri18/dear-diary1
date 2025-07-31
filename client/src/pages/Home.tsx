@@ -1,5 +1,5 @@
-import welcomeImage from '@/assets/welcome-image.jpeg';
-import CalendarComponent from '@/components/CalendarComponent'; // 1. Import your calendar
+import welcomeImage from '@/assets/welcome-image.jpg';
+import CalendarComponent from '@/components/CalendarComponent';
 
 const Home = () => {
   return (
@@ -11,7 +11,6 @@ const Home = () => {
         className="w-full max-w-lg mb-8" 
       />
 
-      {/* 2. Use your imported calendar component here */}
       <CalendarComponent />
 
     </div>
