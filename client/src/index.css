@@ -118,3 +118,31 @@
     @apply bg-background text-foreground;
   }
 }
+
+.calendar-3d-wrapper {
+  /* This creates the 3D space and perspective */
+  perspective: 1200px;
+  
+  /* Styling for the "glass" card */
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.6); /* Semi-transparent white */
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  /* This blurs the checkered pattern behind the card */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* For Safari browser support */
+}
+
+/* This targets the CalendarComponent *inside* our wrapper */
+.calendar-3d-wrapper > * {
+  /* This applies the 3D tilt */
+  transform: rotateX(8deg) rotateY(-3deg);
+  transition: transform 0.4s ease;
+}
+
+/* This makes the calendar flatten out when you hover over it */
+.calendar-3d-wrapper:hover > * {
+  transform: rotateX(0deg) rotateY(0deg);
+}
