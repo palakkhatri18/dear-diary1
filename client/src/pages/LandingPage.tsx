@@ -3,7 +3,8 @@ import journalImage from '@/assets/digital-journal.png';
 
 const LandingPage = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-full text-center p-4 bg-white">
+    // The bg-white class has been removed from this div
+    <div className="flex flex-col items-center justify-center text-center p-4">
       
       <img
         src={journalImage}
