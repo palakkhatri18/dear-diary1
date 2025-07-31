@@ -9,10 +9,10 @@ const Home = () => {
   return (
     <div className="flex flex-col items-center justify-start p-4 sm:p-8">
         <img 
-    src={welcomeImage} 
-    alt="Welcome to your diary, start journaling today!"
-    className="w-full max-w-md mb-4" 
-        />
+  src={welcomeImage} 
+  alt="Welcome to your diary, start journaling today!"
+  className="w-full max-w-sm mb-2" 
+/>
       <div className="calendar-3d-wrapper">
         <CalendarComponent />
       </div>
