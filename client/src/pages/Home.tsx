@@ -1,4 +1,4 @@
-import welcomeImage from '@/assets/welcome-image.jpg';
+import welcomeImage from '@/assets/welcome-image.jpeg';
 import CalendarComponent from '@/components/CalendarComponent';
 
 const Home = () => {
