@@ -1,20 +1,18 @@
-// 1. We need to import useEffect from React
+// 1. We need to import useEffect
 import { useEffect } from 'react';
-import welcomeImage from '@/assets/welcome-image.png';
+import welcomeImage from '@/assets/welcome-image.png'; // Using the .png as requested
 import CalendarComponent from '@/components/CalendarComponent';
 
 const Home = () => {
 
-  // 2. This hook will add a style to the main page body to prevent scrolling
+  // 2. This hook adds the style to the main page to prevent scrolling
   useEffect(() => {
-    // When this page loads, add 'overflow-hidden' to the <body>
     document.body.classList.add('overflow-hidden');
-
-    // When you navigate away from this page, remove the style
+    // This part is a cleanup function that removes the style when you navigate away
     return () => {
       document.body.classList.remove('overflow-hidden');
     };
-  }, []); // The empty array [] means this effect runs only when the page loads
+  }, []); // The empty array ensures this runs only once when the page loads
 
   return (
     <div className="flex flex-col items-center justify-center p-4 sm:p-8">
