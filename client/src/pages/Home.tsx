@@ -1,30 +1,21 @@
-import { useEffect } from 'react';
+// The 'useEffect' import is gone
 import welcomeImage from '@/assets/welcome-image.png';
 import CalendarComponent from '@/components/CalendarComponent';
 
 const Home = () => {
 
-  useEffect(() => {
-    document.body.classList.add('overflow-hidden');
-    return () => {
-      document.body.classList.remove('overflow-hidden');
-    };
-  }, []);
+  // The useEffect hook has been completely removed from here.
 
   return (
-    // The change is on this line: justify-center -> justify-start
     <div className="flex flex-col items-center justify-start p-4 sm:p-8">
-      
       <img 
         src={welcomeImage} 
         alt="Welcome to your diary, start journaling today!"
         className="w-full max-w-lg mb-8" 
       />
-
       <div className="calendar-3d-wrapper">
         <CalendarComponent />
       </div>
-
     </div>
   );
 };

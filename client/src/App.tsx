@@ -17,14 +17,13 @@ const LandingPage = lazy(() => import('@/pages/LandingPage'));
 
 function App() {
   return (
-    // This CSS Grid layout is the key to fixing the footer issue
     <div 
-      className="grid grid-rows-[auto_1fr_auto] min-h-screen bg-repeat"
+      className="grid grid-rows-[auto_1fr_auto] h-screen bg-repeat"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <Navbar />
       
-      <main className="overflow-y-hidden">
+      <main className="overflow-y-auto">
         <Suspense fallback={<div className="p-6 text-center">Loading...</div>}>
           <Routes>
             <Route
