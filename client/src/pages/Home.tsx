@@ -1,4 +1,4 @@
-import welcomeImage from '@/assets/welcome-image.jpg'; // 1. Import your new welcome image
+import welcomeImage from '@/assets/welcome-image.jpeg'; // Note the .jpeg
 
 // Note: You may need to import your Calendar component here
 // For example: import Calendar from '@/components/Calendar';
