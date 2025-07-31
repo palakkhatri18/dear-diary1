@@ -12,7 +12,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center p-4 sm:p-8">
+    // The change is on this line: justify-center -> justify-start
+    <div className="flex flex-col items-center justify-start p-4 sm:p-8">
       
       <img 
         src={welcomeImage} 
@@ -20,7 +21,6 @@ const Home = () => {
         className="w-full max-w-lg mb-8" 
       />
 
-      {/* We've wrapped the calendar in a new div for the 3D effect */}
       <div className="calendar-3d-wrapper">
         <CalendarComponent />
       </div>
