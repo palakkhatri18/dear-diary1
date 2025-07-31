@@ -9,6 +9,7 @@ import {
 } from '@clerk/clerk-react';
 
 import Navbar from '@/components/Navbar';
+import backgroundImage from '@/assets/background-pattern.jpg';
 
 const Home = lazy(() => import('@/pages/Home'));
 const DiaryEntry = lazy(() => import('@/pages/DiaryEntry'));
@@ -16,7 +17,10 @@ const LandingPage = lazy(() => import('@/pages/LandingPage'));
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div 
+      className="flex flex-col min-h-screen bg-repeat"
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
       <Navbar />
       
       <main className="flex-grow overflow-y-hidden">
@@ -60,7 +64,7 @@ function App() {
         </Suspense>
       </main>
 
-      <footer className="text-center p-6 text-base text-zinc-600 border-t border-zinc-200">
+      <footer className="text-center p-6 text-base text-zinc-600 border-t border-zinc-200 bg-white/50 backdrop-blur-sm">
         made with ❤️ by palak
       </footer>
     </div>
