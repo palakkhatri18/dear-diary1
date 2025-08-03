@@ -4,17 +4,30 @@ import { Linkedin, Github, Mail, Code } from 'lucide-react';
 
 const ConnectPage = () => {
   return (
+    // This main container now perfectly centers the card on the screen.
     <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="w-full max-w-2xl rounded-2xl bg-white/50 backdrop-blur-xl p-8 sm:p-12 shadow-2xl border border-white/20">
+      
+      {/*
+        --- CARD UPDATES ---
+        1. transition-all & duration-500: For a smooth 0.5-second animation.
+        2. hover:scale-105: Makes the card slightly larger on hover.
+        3. hover:-rotate-x-2: Tilts the card slightly on the X-axis for a 3D effect.
+        4. hover:shadow-2xl & hover:shadow-pink-500/40: Adds the pink glow on hover.
+      */}
+      <div className="w-full max-w-2xl rounded-2xl bg-white/50 backdrop-blur-xl p-8 sm:p-12 border border-white/20
+                     shadow-lg transition-all duration-500 ease-in-out
+                     hover:scale-105 hover:-rotate-x-2
+                     hover:shadow-2xl hover:shadow-pink-500/40">
+
         <div className="text-center">
-          {/* Your "Connect With Me" image with hover effect */}
+          {/* The individual hover effect from the image is removed to prevent conflicts */}
           <img
             src={connectImage}
             alt="Connect With Me"
-            className="mx-auto mb-8 w-full max-w-sm transition-transform duration-300 ease-in-out hover:scale-105"
+            className="mx-auto mb-8 w-full max-w-sm"
           />
 
-          {/* Social Links Container with Lucide Icons */}
+          {/* Social Links Container (no changes here) */}
           <div className="flex items-center justify-center space-x-6">
             <a
               href="mailto:palakkhatri2004@gmail.com"
