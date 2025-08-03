@@ -1,32 +1,60 @@
-// 1. Import the image from your project files
+// Import the image and lucide icons
 import connectImage from '../assets/connect.png';
+import { Linkedin, Github, Mail, Code } from 'lucide-react';
+
 const ConnectPage = () => {
   return (
-    // This outer container centers the card on the page
-    <div className="flex items-center justify-center min-h-full p-4">
-      
-      {/* This inner container is the new blurred "glass" card */}
+    <div className="flex items-center justify-center min-h-screen p-4">
       <div className="w-full max-w-2xl rounded-2xl bg-white/50 backdrop-blur-xl p-8 sm:p-12 shadow-2xl border border-white/20">
-        
         <div className="text-center">
-          {/* 2. Replace the <h1> text with the <img> tag */}
+          {/* Your "Connect With Me" image with hover effect */}
           <img
             src={connectImage}
             alt="Connect With Me"
-            className="mx-auto mb-4 w-full max-w-sm transition-transform duration-300 ease-in-out hover:scale-105"
+            className="mx-auto mb-8 w-full max-w-sm transition-transform duration-300 ease-in-out hover:scale-105"
           />
-          
-          <p className="text-lg text-zinc-600">
-            Here are the best ways to get in touch or see my other work.
-          </p>
 
-          <div className="mt-12 text-zinc-700">
-            <p>Links coming soon...</p>
+          {/* Social Links Container with Lucide Icons */}
+          <div className="flex items-center justify-center space-x-6">
+            <a
+              href="mailto:palakkhatri2004@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Email"
+              className="text-zinc-800 hover:text-pink-500 transition-colors duration-300"
+            >
+              <Mail size={30} strokeWidth={2} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/palak-khatri-7236b8247/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="text-zinc-800 hover:text-blue-600 transition-colors duration-300"
+            >
+              <Linkedin size={30} strokeWidth={2} />
+            </a>
+            <a
+              href="https://github.com/palakkhatri18"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="text-zinc-800 hover:text-gray-900 transition-colors duration-300"
+            >
+              <Github size={30} strokeWidth={2} />
+            </a>
+            <a
+              href="https://www.geeksforgeeks.org/user/palakkhatri/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GeeksforGeeks"
+              className="text-zinc-800 hover:text-green-500 transition-colors duration-300"
+            >
+              <Code size={30} strokeWidth={2} />
+            </a>
           </div>
         </div>
-        
       </div>
-      
     </div>
   );
 };
