@@ -24,7 +24,6 @@ function App() {
     >
       <Navbar />
       
-      {/* Changed back to overflow-y-hidden to stop scrolling */}
       <main className="overflow-y-hidden">
         <Suspense fallback={<div className="p-6 text-center">Loading...</div>}>
           <Routes>
@@ -69,7 +68,8 @@ function App() {
 
       <footer className="text-center p-4 text-base text-zinc-700 border-t border-white/50 bg-white/75 backdrop-blur-sm">
         <Link to="/connect" className="hover:text-pink-500 transition-colors">
-          made with ❤️ by palakk
+          made with ❤️ by{' '}
+          <span className="underline underline-offset-4">palakk</span>
         </Link>
       </footer>
     </div>
