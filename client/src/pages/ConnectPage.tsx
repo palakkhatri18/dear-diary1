@@ -1,19 +1,17 @@
-// 1. Import your new background image
 import connectBackground from '@/assets/about me.png';
 
 const ConnectPage = () => {
   return (
-    // 2. Apply the background image and styling to this main div
+    // The background classes on this div have been updated
     <div 
-      className="relative flex flex-col items-center justify-center min-h-full text-center p-8 bg-cover bg-center"
+      className="relative flex flex-col items-center justify-center min-h-full text-center p-8 bg-contain bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${connectBackground})` }}
     >
       {/* This div adds a semi-transparent dark overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/30"></div>
+      <div className="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
 
       {/* This div keeps your content on top of the overlay */}
       <div className="relative z-10">
-        {/* 3. Changed text to white and added a shadow for better contrast */}
         <h1 className="text-5xl font-bold mb-4 text-white drop-shadow-lg">
           Connect With Me
         </h1>
