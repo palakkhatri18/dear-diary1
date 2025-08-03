@@ -1,6 +1,5 @@
 // 1. Import the image from your project files
-import connectImage from './connect.png'; // Adjust the path if you place it in an 'assets' folder
-
+import connectImage from '../assets/connect.png';
 const ConnectPage = () => {
   return (
     // This outer container centers the card on the page
