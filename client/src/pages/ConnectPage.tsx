@@ -3,7 +3,6 @@ import { Linkedin, Github, Mail, Code } from 'lucide-react';
 
 const ConnectPage = () => {
   return (
-    // UPDATED: Using CSS Grid for more reliable centering.
     <div className="grid place-items-center min-h-screen p-4">
       
       <div className="w-full max-w-2xl rounded-2xl bg-white/50 backdrop-blur-xl p-8 sm:p-12 border border-white/20
@@ -37,12 +36,13 @@ const ConnectPage = () => {
             >
               <Linkedin size={30} strokeWidth={2} />
             </a>
+            {/* -- THIS IS THE UPDATED LINE -- */}
             <a
               href="https://github.com/palakkhatri18"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="text-zinc-800 hover:text-gray-600 transition-colors duration-300"
+              className="text-zinc-800 hover:text-amber-800 transition-colors duration-300"
             >
               <Github size={30} strokeWidth={2} />
             </a>
